@@ -1,0 +1,1269 @@
+Successfully built 0fcb5def2924
+Successfully tagged httparena-cweb:latest
+[info] tuning host for benchmark runs
+[info] CPU governor → performance
+[info] setting kernel socket limits
+[info] setting UDP buffer sizes for QUIC
+[info] setting loopback MTU to 1500 (realistic Ethernet)
+[info] restarting docker daemon
+[info] dropping kernel caches
+[info] starting postgres sidecar
+[info] postgres ready (seeded)
+
+==============================================
+=== cweb / baseline / 4096c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Templates: 3
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   2.61ms   1.15ms   7.00ms   15.90ms   24.20ms
+
+  7961653 requests in 5.00s, 7960917 responses
+  Throughput: 1.59M req/s
+  Bandwidth:  100.17MB/s
+  Status codes: 2xx=7960917, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 7960917 / 7960917 responses (100.0%)
+  Per-template: 2662150,2651611,2647156
+  Per-template-ok: 2662150,2651611,2647156
+[info] CPU 727.4% | Mem 661MiB
+
+[run 2/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Templates: 3
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   2.69ms   1.88ms   6.25ms   14.10ms   22.10ms
+
+  7850599 requests in 5.00s, 7849511 responses
+  Throughput: 1.57M req/s
+  Bandwidth:  98.79MB/s
+  Status codes: 2xx=7849511, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 7849511 / 7849511 responses (100.0%)
+  Per-template: 2624291,2611628,2613592
+  Per-template-ok: 2624291,2611628,2613592
+[info] CPU 765.5% | Mem 675MiB
+
+[run 3/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Templates: 3
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   3.09ms   1.37ms   8.41ms   19.40ms   29.40ms
+
+  6774455 requests in 5.00s, 6774007 responses
+  Throughput: 1.35M req/s
+  Bandwidth:  85.26MB/s
+  Status codes: 2xx=6774007, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 6774007 / 6774007 responses (100.0%)
+  Per-template: 2257301,2259421,2257285
+  Per-template-ok: 2257301,2259421,2257285
+[info] CPU 738.8% | Mem 684MiB
+
+=== Best: 1592183 req/s (CPU: 727.4%, Mem: 661MiB) ===
+[info] input BW: 122.99MB/s (avg template: 81 bytes)
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / pipelined / 4096c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1
+  Target:    localhost:8080/pipeline
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   9.74ms   8.79ms   21.30ms   37.40ms   62.30ms
+
+  35083801 requests in 5.00s, 35044889 responses
+  Throughput: 7.00M req/s
+  Bandwidth:  440.81MB/s
+  Status codes: 2xx=35044889, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 35044889 / 35044889 responses (100.0%)
+[info] CPU 842.7% | Mem 672MiB
+
+[run 2/3]
+gcannon v0.6.1
+  Target:    localhost:8080/pipeline
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   24.11ms   22.70ms   44.00ms   85.00ms   126.10ms
+
+  15005927 requests in 5.01s, 14967015 responses
+  Throughput: 2.99M req/s
+  Bandwidth:  188.22MB/s
+  Status codes: 2xx=14967015, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 14967015 / 14967015 responses (100.0%)
+[info] CPU 854.0% | Mem 695MiB
+
+[run 3/3]
+gcannon v0.6.1
+  Target:    localhost:8080/pipeline
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   11.04ms   9.29ms   25.70ms   44.60ms   72.20ms
+
+  30934469 requests in 5.00s, 30907845 responses
+  Throughput: 6.18M req/s
+  Bandwidth:  388.77MB/s
+  Status codes: 2xx=30907845, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 30907845 / 30907845 responses (100.0%)
+[info] CPU 898.2% | Mem 700MiB
+
+=== Best: 7008977 req/s (CPU: 842.7%, Mem: 672MiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / limited-conn / 4096c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Templates: 3
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   3.58ms    464us   10.50ms   22.20ms   107.40ms
+
+  5546671 requests in 5.01s, 5544624 responses
+  Throughput: 1.11M req/s
+  Bandwidth:  69.70MB/s
+  Status codes: 2xx=5544624, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 5544624 / 5544624 responses (100.0%)
+  Reconnects: 553369
+  Per-template: 1848261,1848087,1848276
+  Per-template-ok: 1848261,1848087,1848276
+[info] CPU 635.6% | Mem 1.2GiB
+
+[run 2/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Templates: 3
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   3.81ms    348us   10.80ms   36.80ms   145.30ms
+
+  5237476 requests in 5.00s, 5235653 responses
+  Throughput: 1.05M req/s
+  Bandwidth:  65.86MB/s
+  Status codes: 2xx=5235653, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 5235653 / 5235653 responses (100.0%)
+  Reconnects: 522457
+  Per-template: 1745071,1745295,1745287
+  Per-template-ok: 1745071,1745295,1745287
+[info] CPU 632.8% | Mem 1.3GiB
+
+[run 3/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Templates: 3
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   3.65ms    393us   10.10ms   23.90ms   161.70ms
+
+  5349977 requests in 5.00s, 5349283 responses
+  Throughput: 1.07M req/s
+  Bandwidth:  67.29MB/s
+  Status codes: 2xx=5349283, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 5349283 / 5349283 responses (100.0%)
+  Reconnects: 534212
+  Per-template: 1783118,1783108,1783057
+  Per-template-ok: 1783118,1783108,1783057
+[info] CPU 645.8% | Mem 1.3GiB
+
+=== Best: 1106711 req/s (CPU: 635.6%, Mem: 1.2GiB) ===
+[info] input BW: 85.49MB/s (avg template: 81 bytes)
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+[info] skip: cweb does not subscribe to json-comp
+[info] skip: cweb does not subscribe to json-tls
+[info] skip: cweb does not subscribe to 8gbit
+[info] skip: cweb does not subscribe to static-tls
+
+==============================================
+=== cweb / async-db / 1024c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     1024 (16/thread)
+  Pipeline:  1
+  Req/conn:  25
+  Templates: 5
+  Expected:  200
+  Duration:  10s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   25.46ms   21.70ms   52.70ms   84.10ms   120.00ms
+
+  405225 requests in 10.00s, 404698 responses
+  Throughput: 40.46K req/s
+  Bandwidth:  154.24MB/s
+  Status codes: 2xx=404698, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 404698 / 404698 responses (100.0%)
+  Reconnects: 15931
+  Errors: connect 0, read 30, timeout 0
+  Per-template: 81093,81124,80744,80989,80748
+  Per-template-ok: 81093,81124,80744,80989,80748
+[info] CPU 360.0% | Mem 323MiB
+
+[run 2/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     1024 (16/thread)
+  Pipeline:  1
+  Req/conn:  25
+  Templates: 5
+  Expected:  200
+  Duration:  10s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   26.20ms   22.10ms   51.70ms   92.50ms   132.20ms
+
+  394388 requests in 10.00s, 393870 responses
+  Throughput: 39.37K req/s
+  Bandwidth:  150.06MB/s
+  Status codes: 2xx=393870, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 393870 / 393870 responses (100.0%)
+  Reconnects: 15478
+  Errors: connect 0, read 39, timeout 0
+  Per-template: 78821,79161,78611,78762,78515
+  Per-template-ok: 78821,79161,78611,78762,78515
+[info] CPU 350.4% | Mem 368MiB
+
+[run 3/3]
+gcannon v0.6.1
+  Target:    localhost:8080/
+  Threads:   64
+  Conns:     1024 (16/thread)
+  Pipeline:  1
+  Req/conn:  25
+  Templates: 5
+  Expected:  200
+  Duration:  10s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   25.38ms   18.30ms   59.40ms   103.20ms   138.10ms
+
+  403713 requests in 10.00s, 403243 responses
+  Throughput: 40.31K req/s
+  Bandwidth:  153.73MB/s
+  Status codes: 2xx=403243, 3xx=0, 4xx=0, 5xx=0
+  Latency samples: 403243 / 403243 responses (100.0%)
+  Reconnects: 15879
+  Errors: connect 0, read 36, timeout 0
+  Per-template: 81066,80709,80279,80417,80772
+  Per-template-ok: 81066,80709,80279,80417,80772
+[info] CPU 362.3% | Mem 400MiB
+
+=== Best: 40469 req/s (CPU: 360.0%, Mem: 323MiB) ===
+[info] input BW: 2.70MB/s (avg template: 70 bytes)
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+[info] skip: cweb does not subscribe to fortunes
+[info] skip: cweb does not subscribe to baseline-h2
+[info] skip: cweb does not subscribe to static-h2
+[info] skip: cweb does not subscribe to baseline-h2c
+[info] skip: cweb does not subscribe to json-h2c
+[info] skip: cweb does not subscribe to baseline-h3
+[info] skip: cweb does not subscribe to static-h3
+[info] skip: cweb does not subscribe to gateway-64
+[info] skip: cweb does not subscribe to gateway-h3
+[info] skip: cweb does not subscribe to production-stack
+[info] skip: cweb does not subscribe to unary-grpc
+[info] skip: cweb does not subscribe to unary-grpc-tls
+
+==============================================
+=== cweb / echo-ws / 512c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency    267us     37us    634us   4.13ms   8.58ms
+
+  9875753 frames sent in 5.00s, 9875529 frames received
+  Throughput: 1.97M req/s
+  Bandwidth:  13.19MB/s
+  WS upgrades: 512
+  WS frames:   9875529
+  Latency samples: 9875529 / 9875529 responses (100.0%)
+[info] CPU 697.9% | Mem 180MiB
+
+[run 2/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency    278us     38us    699us   4.09ms   8.27ms
+
+  9424598 frames sent in 5.00s, 9424366 frames received
+  Throughput: 1.88M req/s
+  Bandwidth:  12.59MB/s
+  WS upgrades: 512
+  WS frames:   9424366
+  Latency samples: 9424366 / 9424366 responses (100.0%)
+[info] CPU 695.0% | Mem 184MiB
+
+[run 3/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency    271us     37us    634us   4.28ms   8.81ms
+
+  9694825 frames sent in 5.00s, 9694505 frames received
+  Throughput: 1.94M req/s
+  Bandwidth:  12.95MB/s
+  WS upgrades: 512
+  WS frames:   9694505
+  Latency samples: 9694505 / 9694505 responses (100.0%)
+[info] CPU 688.8% | Mem 186MiB
+
+=== Best: 1975105 req/s (CPU: 697.9%, Mem: 180MiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / echo-ws / 4096c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   3.20ms    406us   10.00ms   21.10ms   34.20ms
+
+  6703028 frames sent in 5.00s, 6701575 frames received
+  Throughput: 1.34M req/s
+  Bandwidth:  8.98MB/s
+  WS upgrades: 4096
+  WS frames:   6701575
+  Latency samples: 6701575 / 6701575 responses (100.0%)
+[info] CPU 619.2% | Mem 674MiB
+
+[run 2/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   2.24ms    344us   7.09ms   15.90ms   26.50ms
+
+  9325352 frames sent in 5.01s, 9324718 frames received
+  Throughput: 1.86M req/s
+  Bandwidth:  12.44MB/s
+  WS upgrades: 4096
+  WS frames:   9324718
+  Latency samples: 9324718 / 9324718 responses (100.0%)
+[info] CPU 666.6% | Mem 691MiB
+
+[run 3/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   2.25ms    285us   7.82ms   17.10ms   27.20ms
+
+  9339181 frames sent in 5.01s, 9338089 frames received
+  Throughput: 1.86M req/s
+  Bandwidth:  12.48MB/s
+  WS upgrades: 4096
+  WS frames:   9338089
+  Latency samples: 9338089 / 9338089 responses (100.0%)
+[info] CPU 659.7% | Mem 703MiB
+
+=== Best: 1863890 req/s (CPU: 659.7%, Mem: 703MiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / echo-ws / 16384c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     16384 (256/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   13.34ms   12.60ms   25.40ms   38.50ms   51.10ms
+
+  6297456 frames sent in 5.00s, 6281328 frames received
+  Throughput: 1.26M req/s
+  Bandwidth:  8.78MB/s
+  WS upgrades: 16384
+  WS frames:   6281328
+  Latency samples: 6281328 / 6281328 responses (100.0%)
+[info] CPU 571.8% | Mem 1.7GiB
+
+[run 2/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     16384 (256/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   13.69ms   12.70ms   25.70ms   47.80ms   73.20ms
+
+  6126548 frames sent in 5.02s, 6113616 frames received
+  Throughput: 1.22M req/s
+  Bandwidth:  8.44MB/s
+  WS upgrades: 16384
+  WS frames:   6113616
+  Latency samples: 6113616 / 6113616 responses (100.0%)
+[info] CPU 620.4% | Mem 1.7GiB
+
+[run 3/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     16384 (256/thread)
+  Pipeline:  1
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   13.39ms   13.10ms   22.90ms   34.50ms   45.80ms
+
+  6163135 frames sent in 5.00s, 6150315 frames received
+  Throughput: 1.23M req/s
+  Bandwidth:  8.52MB/s
+  WS upgrades: 16384
+  WS frames:   6150315
+  Latency samples: 6150315 / 6150315 responses (100.0%)
+[info] CPU 606.1% | Mem 1.7GiB
+
+=== Best: 1256265 req/s (CPU: 571.8%, Mem: 1.7GiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / echo-ws-pipeline / 512c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency    851us     98us   2.53ms   12.00ms   17.70ms
+
+  50338604 frames sent in 5.00s, 50333228 frames received
+  Throughput: 10.06M req/s
+  Bandwidth:  67.18MB/s
+  WS upgrades: 512
+  WS frames:   50333228
+  Latency samples: 50333228 / 50333228 responses (100.0%)
+[info] CPU 916.8% | Mem 149MiB
+
+[run 2/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   1.33ms    130us   5.33ms   12.80ms   20.20ms
+
+  33098702 frames sent in 5.01s, 33093582 frames received
+  Throughput: 6.60M req/s
+  Bandwidth:  44.09MB/s
+  WS upgrades: 512
+  WS frames:   33093582
+  Latency samples: 33093582 / 33093582 responses (100.0%)
+[info] CPU 870.9% | Mem 152MiB
+
+[run 3/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency    846us     97us   2.52ms   11.50ms   16.10ms
+
+  49900974 frames sent in 5.00s, 49896238 frames received
+  Throughput: 9.97M req/s
+  Bandwidth:  66.59MB/s
+  WS upgrades: 512
+  WS frames:   49896238
+  Latency samples: 49896238 / 49896238 responses (100.0%)
+[info] CPU 927.3% | Mem 158MiB
+
+=== Best: 10066645 req/s (CPU: 916.8%, Mem: 149MiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / echo-ws-pipeline / 4096c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   7.12ms   5.10ms   16.80ms   29.80ms   48.60ms
+
+  47500873 frames sent in 5.00s, 47479145 frames received
+  Throughput: 9.49M req/s
+  Bandwidth:  63.41MB/s
+  WS upgrades: 4096
+  WS frames:   47479145
+  Latency samples: 47479145 / 47479145 responses (100.0%)
+[info] CPU 760.2% | Mem 666MiB
+
+[run 2/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   15.53ms   15.00ms   27.70ms   44.60ms   65.60ms
+
+  21648057 frames sent in 5.01s, 21630361 frames received
+  Throughput: 4.32M req/s
+  Bandwidth:  28.88MB/s
+  WS upgrades: 4096
+  WS frames:   21630361
+  Latency samples: 21630361 / 21630361 responses (100.0%)
+[info] CPU 792.7% | Mem 680MiB
+
+[run 3/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   15.60ms   13.40ms   31.20ms   60.90ms   121.30ms
+
+  21397796 frames sent in 5.01s, 21386116 frames received
+  Throughput: 4.27M req/s
+  Bandwidth:  28.54MB/s
+  WS upgrades: 4096
+  WS frames:   21386116
+  Latency samples: 21386116 / 21386116 responses (100.0%)
+[info] CPU 724.1% | Mem 694MiB
+
+=== Best: 9495829 req/s (CPU: 760.2%, Mem: 666MiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / echo-ws-pipeline / 16384c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     16384 (256/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   37.76ms   36.50ms   53.30ms   76.30ms   107.70ms
+
+  35471749 frames sent in 5.01s, 35217797 frames received
+  Throughput: 7.03M req/s
+  Bandwidth:  47.35MB/s
+  WS upgrades: 16384
+  WS frames:   35217797
+  Latency samples: 35217797 / 35217797 responses (100.0%)
+[info] CPU 712.5% | Mem 1.7GiB
+
+[run 2/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     16384 (256/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   38.79ms   36.40ms   56.40ms   124.80ms   210.10ms
+
+  34329901 frames sent in 5.01s, 34133101 frames received
+  Throughput: 6.82M req/s
+  Bandwidth:  45.81MB/s
+  WS upgrades: 16384
+  WS frames:   34133101
+  Latency samples: 34133101 / 34133101 responses (100.0%)
+[info] CPU 691.3% | Mem 1.7GiB
+
+[run 3/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     16384 (256/thread)
+  Pipeline:  16
+  Req/conn:  unlimited (keep-alive)
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   37.10ms   34.30ms   54.50ms   83.40ms   147.10ms
+
+  35735351 frames sent in 5.00s, 35526263 frames received
+  Throughput: 7.10M req/s
+  Bandwidth:  47.74MB/s
+  WS upgrades: 16384
+  WS frames:   35526263
+  Latency samples: 35526263 / 35526263 responses (100.0%)
+[info] CPU 733.1% | Mem 1.7GiB
+
+=== Best: 7105252 req/s (CPU: 733.1%, Mem: 1.7GiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / echo-ws-limited / 512c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency    349us     46us    261us   7.05ms   11.80ms
+
+  5511391 frames sent in 5.00s, 5511157 frames received
+  Throughput: 1.10M req/s
+  Bandwidth:  20.92MB/s
+  WS upgrades: 561517
+  WS frames:   5511157
+  Latency samples: 5511157 / 5511157 responses (100.0%)
+  Reconnects: 551153
+  Errors: connect 0, read 150, timeout 0
+[info] CPU 625.1% | Mem 380MiB
+
+[run 2/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency    335us     46us    247us   6.79ms   11.50ms
+
+  5596797 frames sent in 5.00s, 5596554 frames received
+  Throughput: 1.12M req/s
+  Bandwidth:  21.25MB/s
+  WS upgrades: 570713
+  WS frames:   5596554
+  Latency samples: 5596554 / 5596554 responses (100.0%)
+  Reconnects: 559694
+  Errors: connect 0, read 138, timeout 0
+[info] CPU 656.1% | Mem 393MiB
+
+[run 3/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     512 (8/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency    456us     54us    873us   7.67ms   12.30ms
+
+  4346701 frames sent in 5.00s, 4346483 frames received
+  Throughput: 868.44K req/s
+  Bandwidth:  16.49MB/s
+  WS upgrades: 444648
+  WS frames:   4346483
+  Latency samples: 4346483 / 4346483 responses (100.0%)
+  Reconnects: 434679
+  Errors: connect 0, read 102, timeout 0
+[info] CPU 626.5% | Mem 416MiB
+
+=== Best: 1119310 req/s (CPU: 656.1%, Mem: 393MiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / echo-ws-limited / 4096c (tool=gcannon) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   2.96ms    427us   9.91ms   18.50ms   27.60ms
+
+  5258604 frames sent in 5.00s, 5257070 frames received
+  Throughput: 1.05M req/s
+  Bandwidth:  19.97MB/s
+  WS upgrades: 532952
+  WS frames:   5257070
+  Latency samples: 5257070 / 5257070 responses (100.0%)
+  Reconnects: 525355
+  Errors: connect 0, read 320, timeout 0
+[info] CPU 583.5% | Mem 1.3GiB
+
+[run 2/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   3.00ms    479us   9.34ms   19.80ms   45.80ms
+
+  5649696 frames sent in 5.00s, 5648956 frames received
+  Throughput: 1.13M req/s
+  Bandwidth:  21.44MB/s
+  WS upgrades: 571432
+  WS frames:   5648956
+  Latency samples: 5648956 / 5648956 responses (100.0%)
+  Reconnects: 564889
+  Errors: connect 0, read 445, timeout 0
+[info] CPU 618.7% | Mem 1.3GiB
+
+[run 3/3]
+gcannon v0.6.1 [WS]
+  Target:    localhost:8080/ws
+  Threads:   64
+  Conns:     4096 (64/thread)
+  Pipeline:  1
+  Req/conn:  10
+  Expected:  200
+  Duration:  5s
+
+
+  Thread Stats   Avg      p50      p90      p99    p99.9
+    Latency   2.99ms    462us   10.30ms   19.30ms   28.40ms
+
+  5544219 frames sent in 5.00s, 5542055 frames received
+  Throughput: 1.11M req/s
+  Bandwidth:  21.06MB/s
+  WS upgrades: 559580
+  WS frames:   5542055
+  Latency samples: 5542055 / 5542055 responses (100.0%)
+  Reconnects: 553854
+  Errors: connect 0, read 388, timeout 0
+[info] CPU 595.3% | Mem 1.3GiB
+
+=== Best: 1129791 req/s (CPU: 618.7%, Mem: 1.3GiB) ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / latency-1m / 1024c (tool=zrk) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 1000000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.007,
+  "requests": 19971409,
+  "bytes": 1298141585,
+  "achieved_rate": 998235.66,
+  "target_rate": 1000000,
+  "target_rate_end": 1000000,
+  "rate_ratio": 0.9982,
+  "bytes_per_sec": 64885317.66,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 75253,
+  "latency_us": {
+    "min": 10, "mean": 678.4, "stdev": 1904.1, "max": 76287,
+    "p50": 343, "p75": 626, "p90": 1105, "p99": 7498, "p99_9": 26872, "p99_99": 54992
+  },
+  "status_codes": { "1xx": 0, "2xx": 19971409, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "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"
+}
+[info] CPU 592.9% | Mem 250MiB
+
+[run 2/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 1000000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.006,
+  "requests": 19966563,
+  "bytes": 1297826595,
+  "achieved_rate": 998010.31,
+  "target_rate": 1000000,
+  "target_rate_end": 1000000,
+  "rate_ratio": 0.9980,
+  "bytes_per_sec": 64870670.07,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 71598,
+  "latency_us": {
+    "min": 11, "mean": 661.9, "stdev": 1413.0, "max": 72639,
+    "p50": 365, "p75": 671, "p90": 1189, "p99": 6354, "p99_9": 18184, "p99_99": 36400
+  },
+  "status_codes": { "1xx": 0, "2xx": 19966563, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "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"
+}
+[info] CPU 598.6% | Mem 264MiB
+
+[run 3/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 1000000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.006,
+  "requests": 19963578,
+  "bytes": 1297632570,
+  "achieved_rate": 997890.02,
+  "target_rate": 1000000,
+  "target_rate_end": 1000000,
+  "rate_ratio": 0.9979,
+  "bytes_per_sec": 64862851.53,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 55053,
+  "latency_us": {
+    "min": 11, "mean": 668.2, "stdev": 1287.3, "max": 56095,
+    "p50": 383, "p75": 706, "p90": 1242, "p99": 5894, "p99_9": 16504, "p99_99": 31656
+  },
+  "status_codes": { "1xx": 0, "2xx": 19963578, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "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"
+}
+[info] CPU 601.9% | Mem 264MiB
+[info] run 2 wins on score
+
+=== Best: 998010 req/s (CPU: 598.6%, Mem: 264MiB) ===
+[info] exact CPU: 120.79 core-seconds | 6.050 us/req
+=== Fixed-rate: cpu/req 6.05us | p99 6354.0us | p99.9 18184.0us | rate_ratio 0.9980 ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / latency-10k / 1024c (tool=zrk) ===
+==============================================
+[warn] profile cpuset 0-31,64-95 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 10000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.003,
+  "requests": 199716,
+  "bytes": 12981540,
+  "achieved_rate": 9984.51,
+  "target_rate": 10000,
+  "target_rate_end": 10000,
+  "rate_ratio": 0.9985,
+  "bytes_per_sec": 648992.99,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 0,
+  "latency_us": {
+    "min": 10, "mean": 61.7, "stdev": 623.7, "max": 49183,
+    "p50": 27, "p75": 63, "p90": 76, "p99": 148, "p99_9": 5566, "p99_99": 29752
+  },
+  "status_codes": { "1xx": 0, "2xx": 199716, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "HISTFAAAAyx4nC1SXUhUQRS+892Ze3d1123d3VbX1drStMTM7M9K7V/6kR56iaCMLPp7iKCMHuohpMQkpMBSaAmxsJANKsKHoBLxobaeRERkqQjxYZEQMZGQvrl6750zM+ec7zvfnLnR5kcBw5C2sfiYS7NwNo/uGbV/Fh0BbEjZ4xsTh7rKhyO94UTJ77p0p5juRjwtpjtE/413l4ca7xzt2Tmw/ldhIjoZfh/4kvXAM5A56e53zdhTVtqaUUk1LKfkQzUq5+W86rHH7HF3X1ZL4FX4fSS5YmJNe8VM1dzetrrUgWRtX1W6YrJkOjZQ0B95FxoM/vMNeePeV57hjHFX0pWyP1gtVo9KySfynzlqjphD5nfzh9kmE2pQ9qoONS9fqD7VrOKqTY2rBdVlDVqz1oiaU2OqS3WrftUqW1WbfGMOmwv4gjlMYASzIo5fIiWmxKyYF+2YEs0cLVgQaZEQYyIpPvF9JuKiVbSLFnFXNF271HS76cLZ46ePnDhzYNuuLaf21ezZc6hm1fYNm3atKyz0RAuC0Zzo8uWRyLKVOauCwazs7KAVdGUHPdmWy2VZHgtSfxkZlgQkB6RLGs5K6ldahpT8oCzXUoY0YcDk6xjFDby4CmQiDBv7cQwNqNNeG2vpzEdYPhbwIxc+ehXuA1XYzUQ/bTkO4q9ALd6aBD4X+CmY1IijeCtQjXq8FiiVMYRwEnnkIulHwXr1WM3hRgyVtLeI2U/vNw1+KnBFM7G2jwpClOWTmazkhlZ+0cnV0SLubUYNWUmWAHe1HFpkAGWsZpOxiHl69hGtWLOBu5CT56VGP3YwrgtwMihGW8ZKiS5FBTY7LSoDlwYFbKXbJGgrBVZxv5v0fgejgBh7TJDBU+tzak5QSDm9jFKTvKlFu6UfxbyRTFYrZaKWTRKbhCEN8TI1TETMkW3QSW++bqOBl+wlz5CH6wTxTvKdY3wWzNCdMVDMSBGZ9EndFFLNcC6tzQo0+Uwodli95NetCizWD1CYn732kd9LtI8sh1lHr930KYL1r1Lk/C42sxVjWq9CvdRrFgmxUcUM5eEczuMr2OVcujoFr57XWYb/7ze0EQ=="
+}
+[info] CPU 16.9% | Mem 220MiB
+
+[run 2/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 10000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.003,
+  "requests": 199729,
+  "bytes": 12982385,
+  "achieved_rate": 9985.07,
+  "target_rate": 10000,
+  "target_rate_end": 10000,
+  "rate_ratio": 0.9985,
+  "bytes_per_sec": 649029.68,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 0,
+  "latency_us": {
+    "min": 11, "mean": 60.7, "stdev": 604.1, "max": 45471,
+    "p50": 27, "p75": 62, "p90": 74, "p99": 147, "p99_9": 6002, "p99_99": 26824
+  },
+  "status_codes": { "1xx": 0, "2xx": 199729, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "HISTFAAAAyh4nC2SXUgUURiG57xzzuzObuM66bqta25/m5VZ2A8mS1YmSaJdlRAVFUV0EwhRFN1IbRYi3mgiZiKxSFRIUXQhUkIRElFehBclJluERER0ISIRvefYHmbOd77zfs/3s1OS6SqwLJlnLf7s/7swh64b1q5fi47outHA2LaBxtGNU/H52MMNE03Zx+LNE7z+Ika6xfeL0+f+nGg/0J9+V9G2arrkd3TGn8/LLJkN5dznbkcw50w43c6CmlHDakT9lIOqR712pgJf3YG8D/5kbK54pnRh7avK2eps3ff66bpvu//uyG1+WvZsZba0L94WGyu47//Iu+qNhgdCnW5/MBPodt6qQTUnH8pJu9fOyAG7zf5jZ+W4zMl21aqG5IL8Kb/JHvWb1pz6q+bVTeepanXG1KTslu3ymfxoj9hzuGkPI4dH6MSsmBbzYkG8EVNijO9xnkfFhMiKPtEvesQ9MSyGRKu4K3pFh2hpacmIS6fPNpxtrqs92nBm38HmxuaD+xq31dbU1dTu2LR2xZZlqzauKS0qKV5RvK60sHBZSVH+0sKlRcF86eQHEQwFg9IKheBAwgYgHQtBC7aEtbikJbUttcU3XK4Y4ENRvxoRVNEKYys+C257UY/LVFwTeC9wR+ATcIRCD1GUI41KnSSMMlxAigw8EWT72IMmssqBFwK3gGok8UDgBZAgPI7rWuUhQGUcu4iKkhFhxDGc4k2E4C5BhEeE4orgti5GG/uJ0KnX81QBbCbAxxW+UzpD4L+GRSmCApTFafl06KbSYIzNYxMJLnifoNznw0bCDIjjPJMm6QiYwAgFFkyycj2j/aw2jAJWWmGge3GIV/VkHecQdUURkjyTWpfk8ezxpkCGqU8zVg/bZwaLZJ04qrEuHbYBeDhJ/HoKE0SkzMMuZYWuPGlmlsZ2BmhqGXef+zF69fwU7SSfmPFGTBcuElL34Zr/N8roKrbicyVgO1Xmm9A3y033yxGTPsKyCjvp3W7mtNhDJe/DRqtYXsT0kaRNZ5NOJW0j0SWmDFB3s5p7Crp1H4fxUvG7cKHZHtlJsAGbAz/EuMNU/AOAu63P"
+}
+[info] CPU 16.2% | Mem 226MiB
+
+[run 3/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 10000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.002,
+  "requests": 199751,
+  "bytes": 12983815,
+  "achieved_rate": 9986.53,
+  "target_rate": 10000,
+  "target_rate_end": 10000,
+  "rate_ratio": 0.9987,
+  "bytes_per_sec": 649124.15,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 0,
+  "latency_us": {
+    "min": 10, "mean": 55.0, "stdev": 503.2, "max": 37407,
+    "p50": 27, "p75": 62, "p90": 73, "p99": 141, "p99_9": 1649, "p99_99": 27784
+  },
+  "status_codes": { "1xx": 0, "2xx": 199751, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "HISTFAAAAtt4nC1RXUhTYRg+3/t952xnf7rJdG46MzNdaSm65g/+LGuQKeJF4K4sIa0wQerC6CIVK1m2VoqIiIhUWNSNlFmMEC9CIiSoC7HowiREvBgSIjKk58zO4Xzf87w/z/tzMgaGUySJd0gHD/9/swQZvi/VxA4MKXQ0ou6emmiYLPjq6HV89Kw1L7xl4dc09Y2FHrFwz0zXXttQU7Ry9URvzkTGiH3dGrf8NIdNy4Z9fVw3pt9RppRBeVfck3fEnPxXzMjjyoryS/1iidqmHCFX9NBO/ivv8+r5wFR9KPC5drx8snjbs50z6p52LaWOpYSss0nTlmXjvHFPjehjuhUloozJb0RIbPAVHuEL/CWf42t8UMyLDbEstsSmGJJjfFGsigE5Kq/L/fKcPCpvij0xKWZEWOzzD7yfxyhOW/SU4uw7+8M+sUW2wMbZKJtlYTbCloA6I+wJmwCJ4OsJs872rivtbRdvtlyrb6gPBFoqKgrKiopOn6mtLa2uCJSW5R8rPZLqdjscGW6nzemwHXbaTAZLssmUbHEa9AaTwaAY9IpCit6gJ0URpHAikoV0gCQhgRIOrh0S6UgmHBK4ZpEojaxkxttMhbDfoBLKJbsopjp6x+g4pVMKGSmLkug9o9v0mLRbR88Y/WBweMhOvxk1ISqXakA5nUSFPqZF+BPCPuqmYUZ3oNhILxi0dIhSRRBUB13oSBSEQBChKtwddAFC5+kyeummSroKFCS47Ph8qFNCVcjWAVVBqRgjaL50cDN8aMObKOyHUiWKXEJD2bBlw5NFrQleh4SH2iBeEB+VYwmt5EI3KlCmtiEX3WXAKvx5iR0Y6SxuH2LOwZaJOZu0lXoAg1QpHjBYOXxWbXQOyY5EOzoY0FtSQsmbEG4E0yaXYVehqaK1bOirSNM2nUboLgsv16YuRIRZZEG5jwNKAEb8LT/8JUB+WAqRcgsV8zAvcjLx366LNPoHZNmnZw=="
+}
+[info] CPU 16.4% | Mem 232MiB
+[info] run 3 wins on score
+
+=== Best: 9987 req/s (CPU: 16.4%, Mem: 232MiB) ===
+[info] exact CPU: 3.32 core-seconds | 16.624 us/req
+=== Fixed-rate: cpu/req 16.62us | p99 141.0us | p99.9 1649.0us | rate_ratio 0.9987 ===
+[info] dry-run — not saving (use --save to persist)
+httparena-bench-cweb
+httparena-bench-cweb
+
+==============================================
+=== cweb / latency-500k-8cpu / 1024c (tool=zrk) ===
+==============================================
+[warn] profile cpuset 0-3,64-67 exceeds available CPUs (max 19) — using all cores
+[info] waiting for server...
+[info] server ready
+
+[run 1/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 500000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.006,
+  "requests": 9984005,
+  "bytes": 648960325,
+  "achieved_rate": 499054.69,
+  "target_rate": 500000,
+  "target_rate_end": 500000,
+  "rate_ratio": 0.9981,
+  "bytes_per_sec": 32438554.60,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 50319,
+  "latency_us": {
+    "min": 9, "mean": 91.6, "stdev": 480.5, "max": 52383,
+    "p50": 63, "p75": 98, "p90": 143, "p99": 298, "p99_9": 3565, "p99_99": 24472
+  },
+  "status_codes": { "1xx": 0, "2xx": 9984005, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "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"
+}
+[info] CPU 298.2% | Mem 254MiB
+
+[run 2/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 500000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.007,
+  "requests": 9987728,
+  "bytes": 649202320,
+  "achieved_rate": 499205.12,
+  "target_rate": 500000,
+  "target_rate_end": 500000,
+  "rate_ratio": 0.9984,
+  "bytes_per_sec": 32448332.77,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 40318,
+  "latency_us": {
+    "min": 10, "mean": 93.3, "stdev": 353.2, "max": 42367,
+    "p50": 71, "p75": 106, "p90": 151, "p99": 299, "p99_9": 1568, "p99_99": 18120
+  },
+  "status_codes": { "1xx": 0, "2xx": 9987728, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "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"
+}
+[info] CPU 313.1% | Mem 263MiB
+
+[run 3/3]
+{
+  "zrk_version": "2.3.0",
+  "target": { "url": "http://localhost:8080/baseline11?a=1&b=2", "method": "GET" },
+  "config": { "connections": 1024, "launched": 1024, "duration_s": 20.000, "closed": false, "target_rate": 500000, "timeout_ms": 2000, "deadline_ms": 0, "deadline_abort": false, "record_timeouts": true },
+  "duration_s": 20.005,
+  "requests": 9985014,
+  "bytes": 649025910,
+  "achieved_rate": 499127.24,
+  "target_rate": 500000,
+  "target_rate_end": 500000,
+  "rate_ratio": 0.9983,
+  "bytes_per_sec": 32443270.78,
+  "error_rate": 0.000000,
+  "max_schedule_lag_us": 52973,
+  "latency_us": {
+    "min": 9, "mean": 106.5, "stdev": 511.7, "max": 55039,
+    "p50": 75, "p75": 116, "p90": 169, "p99": 349, "p99_9": 4142, "p99_99": 25368
+  },
+  "status_codes": { "1xx": 0, "2xx": 9985014, "3xx": 0, "4xx": 0, "5xx": 0 },
+  "errors": { "connect": 0, "read": 0, "write": 0, "timeout": 0, "deadline": 0, "non_2xx_3xx": 0 },
+  "latency_histogram": "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"
+}
+[info] CPU 318.8% | Mem 269MiB
+[info] run 1 wins on score
+
+=== Best: 499055 req/s (CPU: 298.2%, Mem: 254MiB) ===
+[info] exact CPU: 59.93 core-seconds | 6.003 us/req
+=== Fixed-rate: cpu/req 6.00us | p99 298.0us | p99.9 3565.0us | rate_ratio 0.9981 ===
